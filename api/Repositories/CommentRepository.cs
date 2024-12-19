@@ -38,9 +38,18 @@ namespace api.Repositories
             return commentModel;
         }
 
-        public async Task<List<Comment>> GetAllAsync(QueryObject queryObject)
+        public async Task<List<Comment>> GetAllAsync(CommentQuery queryObject)
         {
-            return await _context.Comments.ToListAsync();
+            var comments = _context.Comments.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(queryObject.Symbol))
+            {
+                comments = comments.Where(s => s.Stock.Symbol == queryObject.Symbol);
+            }
+            if (queryObject.IsDecsending == true)
+            {
+                comments = comments.OrderByDescending(c => c.CreatedOn);
+            }
+            return await comments.ToListAsync();
         }
 
         public async Task<Comment?> GetByIdAsync(int id)

@@ -25,11 +25,11 @@ const Card: React.FC<Props> = ({
         to={`/company/${searchResult.symbol}/company-profile`}
         className="font-bold text-center text-veryDarkViolet md:text-left"
       >
-        {searchResult.name} ({searchResult.symbol})
+        {searchResult.name} ({searchResult.symbol}) &nbsp;
       </Link>
-      <p className="text-veryDarkBlue">{searchResult.currency}</p>
+      {/* <p className="font-bold"> - {searchResult.currency} - </p> */}
       <p className="font-bold text-veryDarkBlue">
-        {searchResult.exchangeShortName} - {searchResult.stockExchange}
+        [{searchResult.exchangeShortName} - {searchResult.stockExchange}]
       </p>
       <AddPortfolio
         onPortfolioCreate={onPortfolioCreate}

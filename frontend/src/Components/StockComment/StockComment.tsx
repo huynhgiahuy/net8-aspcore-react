@@ -29,6 +29,7 @@ const StockComment = ({ stockSymbol }: Props) => {
         if (res) {
           toast.success("Comment created successfully!");
           getComments();
+          console.log("commentPostAPI", res)
         }
       })
       .catch((e) => {
@@ -41,6 +42,7 @@ const StockComment = ({ stockSymbol }: Props) => {
     commentGetAPI(stockSymbol).then((res) => {
       setLoading(false);
       setComment(res?.data!);
+      console.log("commentGetAPI", res)
     });
   };
   return (

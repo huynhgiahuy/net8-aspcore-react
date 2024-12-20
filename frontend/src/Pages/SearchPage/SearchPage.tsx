@@ -1,5 +1,4 @@
 import React, { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
 import { CompanySearch } from "../../company";
 import { searchCompanies } from "../../api";
 import Search from "../../Components/Search/Search";
@@ -60,7 +59,7 @@ const SearchPage = (props: Props) => {
   const onPortfolioDelete = (e: any) => {
     e.preventDefault();
     portfolioDeleteAPI(e.target[0].value).then((res) => {
-      if (res?.status == 200) {
+      if (res?.status === 200) {
         toast.success("Stock deleted from portfolio!");
         getPortfolio();
       }

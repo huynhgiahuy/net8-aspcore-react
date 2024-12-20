@@ -2,7 +2,7 @@ import axios from "axios";
 import { CommentGet, CommentPost } from "../Models/Comment";
 import { handleError } from "../Helpers/ErrorHandler";
 
-const api = "http://localhost:5167/api/comment/";
+const api = "http://localhost:5131/api/comment/";
 
 export const commentPostAPI = async (
   title: string,
@@ -13,6 +13,10 @@ export const commentPostAPI = async (
     const data = await axios.post<CommentPost>(api + `${symbol}`, {
       title: title,
       content: content,
+    }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
     });
     return data;
   } catch (error) {
@@ -22,7 +26,11 @@ export const commentPostAPI = async (
 
 export const commentGetAPI = async (symbol: string) => {
   try {
-    const data = await axios.get<CommentGet[]>(api + `?Symbol=${symbol}`);
+    const data = await axios.get<CommentGet[]>(api + `?Symbol=${symbol}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
     return data;
   } catch (error) {
     handleError(error);

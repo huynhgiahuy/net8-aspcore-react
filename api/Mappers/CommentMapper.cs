@@ -18,6 +18,8 @@ namespace api.Mappers
                 Title = commentModel.Title,
                 Content = commentModel.Content,
                 CreatedOn = commentModel.CreatedOn,
+                UserEmail = commentModel.UserEmail,
+                UserFullName = commentModel.UserFullName
             };
         }
         public static Comment ToCommentFromCreateDto(this CreateCommentDto commentDto, int stockId)

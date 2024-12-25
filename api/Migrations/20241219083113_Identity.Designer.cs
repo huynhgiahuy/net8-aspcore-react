@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241218024828_PortfolioManyToMany")]
-    partial class PortfolioManyToMany
+    [Migration("20241219083113_Identity")]
+    partial class Identity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,15 +54,15 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "489b62ee-4765-45b9-a7dc-c41f8e8435c9",
-                            ConcurrencyStamp = "7670a61b-cb57-4c86-955b-6a242d203917",
+                            Id = "4567f4f5-b1ca-4904-800c-c30129dd656a",
+                            ConcurrencyStamp = "653f6791-12b6-4e69-9bec-718fffadf8c8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2bc33213-91bd-47dd-9104-0489d97f30fd",
-                            ConcurrencyStamp = "7e844371-9fad-4c60-b98b-230ae53f86d6",
+                            Id = "050da12c-a402-4b25-9ffe-f8f24a458e23",
+                            ConcurrencyStamp = "aa9a4078-e991-4587-bfe6-c6551f2cbfef",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -247,6 +247,10 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -258,6 +262,14 @@ namespace api.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserFullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

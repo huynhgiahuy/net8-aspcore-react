@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241218070534_CommentOneToOne")]
-    partial class CommentOneToOne
+    [Migration("20241219083127_SeedRole")]
+    partial class SeedRole
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,15 +54,15 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1550c8ff-1ad8-4e99-9011-4af4786648dc",
-                            ConcurrencyStamp = "5d8eb628-c4a5-439b-8a97-102b13e8c5fe",
+                            Id = "7b82e1c5-d940-4fa4-a199-460b028509c7",
+                            ConcurrencyStamp = "5952de97-f7da-421c-96f6-9f7c026dcd20",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ae630291-dabd-448c-884a-865acc038698",
-                            ConcurrencyStamp = "9241e869-130d-408a-82bc-ee13fa9cba47",
+                            Id = "913f28e5-8511-425f-90b8-8548e7946236",
+                            ConcurrencyStamp = "62c79ef5-dcbf-4b11-af13-198e7a2cfd6d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -249,7 +249,7 @@ namespace api.Migrations
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -265,9 +265,15 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("AppUserId");
+                    b.Property<string>("UserFullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("StockId");
 
@@ -376,17 +382,9 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Comment", b =>
                 {
-                    b.HasOne("api.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("api.Models.Stock", "Stock")
                         .WithMany("Comments")
                         .HasForeignKey("StockId");
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("Stock");
                 });

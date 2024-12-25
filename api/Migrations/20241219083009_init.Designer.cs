@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241218083905_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241219083009_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,15 +54,15 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "23f41148-fe34-4dca-922f-6a62f9366319",
-                            ConcurrencyStamp = "762562e3-5ffd-4728-a33d-ee372f3ac463",
+                            Id = "885d89d2-1e38-432d-bc42-ff7182a65d62",
+                            ConcurrencyStamp = "880e1ca9-ce75-419c-9ced-1852c0940647",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "969266f7-94fa-4ac3-8214-ab1401109070",
-                            ConcurrencyStamp = "a405b450-51dc-4bf0-aa68-4485e90e2ee0",
+                            Id = "9c8187f9-0dc3-4afe-8307-af79163a38ed",
+                            ConcurrencyStamp = "943648e1-7ff9-4c99-960e-ff6a59d07535",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -249,7 +249,7 @@ namespace api.Migrations
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -274,8 +274,6 @@ namespace api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
 
                     b.HasIndex("StockId");
 
@@ -384,17 +382,9 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Comment", b =>
                 {
-                    b.HasOne("api.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("api.Models.Stock", "Stock")
                         .WithMany("Comments")
                         .HasForeignKey("StockId");
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("Stock");
                 });

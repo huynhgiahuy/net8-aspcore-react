@@ -27,13 +27,17 @@ const StockComment = ({ stockSymbol }: Props) => {
     commentPostAPI(e.title, e.content, stockSymbol)
       .then((res) => {
         if (res) {
-          toast.success("Comment created successfully!");
+          toast.success("Comment created successfully!", {
+            autoClose: 1000
+          });
           getComments();
           console.log("commentPostAPI", res)
         }
       })
       .catch((e) => {
-        toast.warning(e);
+        toast.warning(e, {
+          autoClose: 1000
+        });
       });
   };
 

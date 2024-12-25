@@ -34,7 +34,7 @@ const CompanyPage = (props: Props) => {
             <Tile title="DCF" subTitle={"$" + company.dcf.toString()} />
             <Tile title="Sector" subTitle={company.sector} />
             <TenKFinder ticker={company.symbol} />
-            <p className="bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4">
+            <p className="bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4 shadow-lg">
               {company.description}
             </p>
           </CompanyDashboard>

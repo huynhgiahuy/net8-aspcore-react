@@ -52,11 +52,13 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res?.data.token!);
           setUser(userObj!);
-          toast.success("Login Success!");
+          toast.success("Login Success!", {
+            autoClose: 1000
+          });
           navigate("/search");
         }
       })
-      .catch((e) => toast.warning("Server error occured"));
+      .catch((e) => toast.warning("Server error occured", { autoClose: 1000 }));
   };
 
   const loginUser = async (username: string, password: string) => {
@@ -71,11 +73,11 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res?.data.token!);
           setUser(userObj!);
-          toast.success("Login Success!");
+          toast.success("Login Success!", { autoClose: 1000 });
           navigate("/search");
         }
       })
-      .catch((e) => toast.warning("Server error occured"));
+      .catch((e) => toast.warning("Server error occured", { autoClose: 1000 }));
   };
 
   const isLoggedIn = () => {

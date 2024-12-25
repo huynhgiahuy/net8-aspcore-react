@@ -12,7 +12,7 @@ import {
 } from "../../Services/PortfolioService";
 import { toast } from "react-toastify";
 
-interface Props {}
+interface Props { }
 
 const SearchPage = (props: Props) => {
   const [search, setSearch] = useState<string>("");
@@ -47,12 +47,12 @@ const SearchPage = (props: Props) => {
     portfolioAddAPI(e.target[0].value)
       .then((res) => {
         if (res?.status === 204) {
-          toast.success("Stock added to portfolio!");
+          toast.success("Stock added to portfolio!", { autoClose: 1000 });
           getPortfolio();
         }
       })
       .catch((e) => {
-        toast.warning("Could not add stock to portfolio!");
+        toast.warning("Could not add stock to portfolio!", { autoClose: 1000 });
       });
   };
 
@@ -60,7 +60,7 @@ const SearchPage = (props: Props) => {
     e.preventDefault();
     portfolioDeleteAPI(e.target[0].value).then((res) => {
       if (res?.status === 200) {
-        toast.success("Stock deleted from portfolio!");
+        toast.success("Stock deleted from portfolio!", { autoClose: 1000 });
         getPortfolio();
       }
     });

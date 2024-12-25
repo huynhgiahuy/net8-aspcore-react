@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class PortfolioManyToMany : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -182,10 +182,13 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StockId = table.Column<int>(type: "int", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserFullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StockId = table.Column<int>(type: "int", nullable: true),
+                    AppUserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -226,8 +229,8 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2bc33213-91bd-47dd-9104-0489d97f30fd", "7e844371-9fad-4c60-b98b-230ae53f86d6", "User", "USER" },
-                    { "489b62ee-4765-45b9-a7dc-c41f8e8435c9", "7670a61b-cb57-4c86-955b-6a242d203917", "Admin", "ADMIN" }
+                    { "885d89d2-1e38-432d-bc42-ff7182a65d62", "880e1ca9-ce75-419c-9ced-1852c0940647", "Admin", "ADMIN" },
+                    { "9c8187f9-0dc3-4afe-8307-af79163a38ed", "943648e1-7ff9-4c99-960e-ff6a59d07535", "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(

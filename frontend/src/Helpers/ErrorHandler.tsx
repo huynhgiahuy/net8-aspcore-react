@@ -6,19 +6,19 @@ export const handleError = (error: any) => {
     var err = error.response;
     if (Array.isArray(err?.data.errors)) {
       for (let val of err?.data.errors) {
-        toast.warning(val.description);
+        toast.warning(val.description, { autoClose: 1000 });
       }
     } else if (typeof err?.data.errors === "object") {
       for (let e in err?.data.errors) {
-        toast.warning(err.data.errors[e][0]);
+        toast.warning(err.data.errors[e][0], { autoClose: 1000 });
       }
     } else if (err?.data) {
-      toast.warning(err.data);
+      toast.warning(err.data, { autoClose: 1000 });
     } else if (err?.status === 401) {
-      toast.warning("Please login");
+      toast.warning("Please login", { autoClose: 1000 });
       window.history.pushState({}, "LoginPage", "/login");
     } else if (err) {
-      toast.warning(err?.data);
+      toast.warning(err?.data, { autoClose: 1000 });
     }
   }
 };
